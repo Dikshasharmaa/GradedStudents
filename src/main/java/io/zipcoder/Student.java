@@ -13,6 +13,9 @@ public class Student {
         this.lastName = lastName;
         this.examScores = new ArrayList<>(List.of(examScores));
     }
+    public Student(){
+
+    }
 
     public String getFirstName() {
         return firstName;
