@@ -4,45 +4,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-   String firstName = "";
-   String lastName ="";
-   ArrayList<Double> examScores = new ArrayList<>();
+    private String firstName;
+    private String lastName;
+    private List<Double> examScores;
 
-   public Student(String firstName, String lastName, ArrayList<Double> examScores){
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.examScores = examScores;
-   }
+    public Student(String firstName, String lastName, Double[] examScores) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.examScores = new ArrayList<>(List.of(examScores));
+    }
 
-   public String getFirstName() {
-      return firstName;
-   }
+    public String getFirstName() {
+        return firstName;
+    }
 
-   public void setFirstName(String firstName) {
-      this.firstName = firstName;
-   }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-   public String getLastName() {
-      return lastName;
-   }
+    public String getLastName() {
+        return lastName;
+    }
 
-   public void setLastName(String lastName) {
-      this.lastName = lastName;
-   }
-   public String getExamScore() {
-      String result = "";
-      for(int i =0;i<examScores.size();i++){
-         result += toString(examScores.get(i));
-      }
-      return result;
-   }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-   private String toString(Double aDouble) {
-      return examScores.toString();
-   }
+    public String getExamScore() {
+        StringBuilder s = new StringBuilder();
+        int i = 0;
+        for (Double d : examScores) {
+            i++;
+            String result = "Exam " + i + " -> " + d.intValue();
+//         Exam 1 -> 100
+            s.append(result).append("\n");
 
-   public Double getAverageExamScore() {
-      return null;
+        }
+        return s.toString().trim();
+    }
+
+    public int getExamScoresNumber() {
+        return examScores.size();
+    }
+
+    public void setExamScores(int index, double value) {
+        try {
+            examScores.set(index, value);
+        } catch (Exception e) {
+            System.out.println("Array list doesn't have the index number");
+        }
+    }
+
+
+    private String toString(Double aDouble) {
+        return examScores.toString();
+    }
+
+    public Double getAverageExamScore() {
+        double result = 0.0;
+        for (int i = 0; i < examScores.size(); i++) {
+            result += examScores.get(i);
+        }
+        return result / examScores.size();
+    }
+
+    public void addExamScore(double score) {
+        examScores.add(score);
+    }
+
+   @Override
+   public String toString() {
+       StringBuilder sb = new StringBuilder();
+       String studentFirst = getFirstName();
+       String studentLast = getLastName();
+       int average = getAverageExamScore().intValue();
+       String examScore = getExamScore();
+       sb.append("Student Name: " +studentFirst+" ").append(studentLast+"\n").
+               append("> Average Score: "+average+"\n").
+               append("> Exam Scores:"+"\n"+examScore);
+      return sb.toString();
    }
 }
 
