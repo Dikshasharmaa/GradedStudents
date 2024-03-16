@@ -13,10 +13,6 @@ public class Student {
         this.lastName = lastName;
         this.examScores = new ArrayList<>(List.of(examScores));
     }
-    public Student(){
-
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -35,20 +31,15 @@ public class Student {
 
     public String getExamScore() {
         StringBuilder s = new StringBuilder();
-        int i = 0;
-        for (Double d : examScores) {
-            i++;
-            String result = "Exam " + i + " -> " + d.intValue();
-//         Exam 1 -> 100
+        s.append("Exam Scores:\n");
+        for (int i =0; i< examScores.size();i++) {
+            String result = "\t\tExam " + (i+1) + " -> " + examScores.get(i).intValue();
             s.append(result).append("\n");
 
         }
         return s.toString().trim();
     }
 
-    public int getExamScoresNumber() {
-        return examScores.size();
-    }
 
     public void setExamScores(int index, double value) {
         try {
@@ -56,11 +47,6 @@ public class Student {
         } catch (Exception e) {
             System.out.println("Array list doesn't have the index number");
         }
-    }
-
-
-    private String toString(Double aDouble) {
-        return examScores.toString();
     }
 
     public Double getAverageExamScore() {
@@ -84,7 +70,7 @@ public class Student {
        String examScore = getExamScore();
        sb.append("Student Name: " +studentFirst+" ").append(studentLast+"\n").
                append("> Average Score: "+average+"\n").
-               append("> Exam Scores:"+"\n"+examScore);
+               append("> " + examScore);
       return sb.toString();
    }
 }

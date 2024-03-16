@@ -9,21 +9,15 @@ import java.util.Arrays;
 public class StudentTest {
     @Test
     public void getExamScores(){
-        // : Given
         String firstName = "Leon";
         String lastName = "Hunter";
         Double[] examScores = { 100.0, 95.0, 123.0, 96.0 };
         Student student = new Student(firstName, lastName, examScores);
-        String expectedScores = "Exam 1 -> 100\n" +
-                "Exam 2 -> 95\n" +
-                "Exam 3 -> 123\n" +
-                "Exam 4 -> 96";
+        String expectedScores = "Exam Scores:\n\t\tExam 1 -> 100\n" +
+                "\t\tExam 2 -> 95\n" +
+                "\t\tExam 3 -> 123\n" +
+                "\t\tExam 4 -> 96";
 
-        // When
-        //Double output = student.getAverageExamScore();
-
-        // Then
-        //System.out.println(student.getExamScore());
         Assert.assertEquals(expectedScores,student.getExamScore());
     }
 
@@ -56,7 +50,7 @@ public class StudentTest {
         // When
         student.setExamScores(0,150.0);
         String actual = student.getExamScore();
-        String expected = "Exam 1 -> 150";
+        String expected = "Exam Scores:\n\t\tExam 1 -> 150";
 
         // Then
         //System.out.println(student.getExamScore());
@@ -91,10 +85,10 @@ public class StudentTest {
         String expected = "Student Name: Leon Hunter\n" +
                 "> Average Score: 125\n" +
                 "> Exam Scores:\n" +
-                "Exam 1 -> 100\n" +
-                "Exam 2 -> 150\n" +
-                "Exam 3 -> 250\n" +
-                "Exam 4 -> 0";
+                "\t\tExam 1 -> 100\n" +
+                "\t\tExam 2 -> 150\n" +
+                "\t\tExam 3 -> 250\n" +
+                "\t\tExam 4 -> 0";
 
         Assert.assertEquals(expected,actual);
     }

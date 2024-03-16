@@ -27,6 +27,27 @@ public class ClassroomTest {
     }
 
     @Test
+    public void getAverageScores2(){
+        // : Given
+        Double[] s1Scores = { 100.0, 150.0 };
+        Double[] s2Scores = { 225.0, 25.0 };
+        Double[] s3Scores = { 250.0, 50.0 };
+
+        Student s1 = new Student("student", "one", s1Scores);
+        Student s2 = new Student("student", "two", s2Scores);
+        Student s3 = new Student("student", "three", s3Scores);
+        Student[] students = {s1,s2, s3};
+        Classroom classroom = new Classroom(students);
+
+        // When
+        Double actual = classroom.getAverageExamScore();
+        double expected = 133.33;//(125+125+150)/3;
+
+        Assert.assertEquals(expected, actual,0.01);
+    }
+
+
+    @Test
     public void addStudent(){
         int maxNumberOfStudents = 1;
         Classroom classroom = new Classroom(maxNumberOfStudents);
@@ -73,5 +94,19 @@ public class ClassroomTest {
         Assert.assertEquals(expected,actual);
 
     }
+    @Test
+    public void getStudentsByScore(){
+        Double[] examScores1 = { 100.0, 10.0, 25.0, 0.0 };
+        Student student1 = new Student("Leon", "Hunter", examScores1);
+        Double[] examScores2 = { 10.0, 50.0, 20.0, 0.0 };
+        Student student2 = new Student("Asan", "Hunter", examScores2);
+        Double[] examScores3 = { 120.0, 18.0, 270.0, 0.0 };
+        Student student3 = new Student("Leon", "Hunter", examScores3);
 
+        Student[] s ={student1,student2,student3};
+        Classroom classroom = new Classroom(s);
+
+
+
+    }
 }

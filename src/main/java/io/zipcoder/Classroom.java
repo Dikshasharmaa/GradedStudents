@@ -25,9 +25,16 @@ public class Classroom {
     }
 
     public Double getAverageExamScore(){
-        Double d1 = students.get(0).getAverageExamScore();
-        Double d2 = students.get(1).getAverageExamScore();
-        return (d1+d2)/students.size();
+        // create var to store sum of students score averages
+        Double totalAverage = 0.0;
+
+        // iterate throught the list of students
+        for(Student s1 : this.students){
+            // add average of current score to var
+            totalAverage += s1.getAverageExamScore();
+        }
+        // return total sum divided by students size
+        return totalAverage/students.size();
     }
     public void addStudent(Student student){
         students.add(student);
@@ -42,9 +49,11 @@ public class Classroom {
             }
         }
     }
-    public String getStudentsByScore(){
-        students.
+    public List<Student> getStudentsByScore(){
 
+        students.get(0).getAverageExamScore();
+
+    return null;
     }
 }
 
