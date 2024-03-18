@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Classroom {
@@ -51,9 +53,40 @@ public class Classroom {
     }
     public List<Student> getStudentsByScore(){
 
-        students.get(0).getAverageExamScore();
+       // students.get(0).getAverageExamScore();
+        Collections.sort(students, new SortByAverage());
 
-    return null;
+
+
+        return students;
     }
 }
 
+class SortByAverage implements Comparator<Student>
+{
+    // Used for sorting in ascending order of
+    // roll number
+    public int compare(Student a, Student b)
+    {
+        double a_average = a.getAverageExamScore();
+        double b_average = b.getAverageExamScore();
+        if(a_average != b_average){
+            return Double.compare(b.getAverageExamScore(), a.getAverageExamScore());
+        }
+        return a.getFirstName().compareTo(b.getFirstName());
+    }
+}
+
+//Collections.sort(students, new Comparator<Student>() {
+//    @Override
+//    public int compare(Student student1, Student student2) {
+//        double avg1 = student1.calculateAverageScore();
+//        double avg2 = student2.calculateAverageScore();
+//
+//        if (avg1 != avg2) {
+//            return Double.compare(avg1, avg2);
+//        } else {
+//            return student1.name.compareTo(student2.name);
+//        }
+//    }
+//});
