@@ -1,9 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Classroom {
 
@@ -55,11 +52,53 @@ public class Classroom {
 
        // students.get(0).getAverageExamScore();
         Collections.sort(students, new SortByAverage());
-
-
-
         return students;
     }
+    public HashMap<Student,Character> getGradeBook(){
+        HashMap<Student,Character> grades = new HashMap<>();
+        for(Student s: this.students){
+            Double percentile = calculatePercentile(s.getAverageExamScore());
+            if(percentile >= 90){
+                grades.put(s,'A');
+            } else if (percentile >= 71 && percentile <= 89) {
+                grades.put(s,'B');
+            }else if (percentile >= 50 && percentile <= 70) {
+                grades.put(s, 'C');
+            }else if (percentile >= 11 && percentile <= 51) {
+                grades.put(s,'D');
+            }
+            else{
+                grades.put(s,'F');
+            }
+
+        }
+
+        return grades;
+    }
+
+    public Double calculatePercentile(Double score){
+        List<Double> scoresList = new ArrayList<>();
+        for(Student s1 : this.students){
+            scoresList.add(s1.getAverageExamScore());
+        }
+        Collections.sort(scoresList);
+        double count = 0.0;
+        for(Double d1 : scoresList){
+            if (d1.equals(score)){
+                break;
+            }
+            else {
+                count++;
+
+            }
+
+        }
+        Double percentile = (count/scoresList.size()*100);
+        return percentile;
+
+    }
+
+
 }
 
 class SortByAverage implements Comparator<Student>

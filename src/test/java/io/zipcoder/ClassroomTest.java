@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ClassroomTest {
@@ -117,4 +118,36 @@ public class ClassroomTest {
         Assert.assertEquals(expected,actualCall);
 
     }
+    @Test
+    public void getPercentile(){
+        Double[] examScores1 = { 100.0, 80.0, 50.0, 60.0 };
+        Student student1 = new Student("Leon", "Hunter", examScores1);
+        Double[] examScores2 = { 100.0, 10.0, 25.0, 10.0 };
+        Student student2 = new Student("Tom", "Hunter", examScores2);
+        Double[] examScores3 = { 120.0, 18.0, 70.0, 10.0 };
+        Student student3 = new Student("Bob", "Hunter", examScores3);
+        Student[] s ={student1,student2,student3};
+        Classroom classroom = new Classroom(s);
+        //System.out.println(student1.getAverageExamScore());
+        Double actual = classroom.calculatePercentile(72.5);//36.25, 54.5
+        Double expected = 66.67;
+        Assert.assertEquals(expected,actual,0.01);
+    }
+
+    @Test
+    public void getGradeBook(){
+        Double[] examScores1 = { 100.0, 80.0, 50.0, 60.0 };
+        Student student1 = new Student("Leon", "Hunter", examScores1);
+        Double[] examScores2 = { 100.0, 10.0, 25.0, 10.0 };
+        Student student2 = new Student("Tom", "Hunter", examScores2);
+        Double[] examScores3 = { 120.0, 18.0, 70.0, 10.0 };
+        Student student3 = new Student("Bob", "Hunter", examScores3);
+        Student[] s ={student1,student2,student3};
+        Classroom classroom = new Classroom(s);
+        HashMap<Student, Character> actual = classroom.getGradeBook();
+        Character expected = 'C';
+        Assert.assertEquals(expected,actual.get(student1));
+    }
+
+
 }
